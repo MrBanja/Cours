@@ -1,0 +1,6 @@
+<tr id="shopColum{{ shop.id }}" >
+    <td>{{ shop.id }}</td>
+    <td> <input type="text" value="{{ shop.name }}" name="name"></td>
+    <td> <input type="text" value="{{ shop.address }}" name="address"></td>
+    <td> <button id="changeColum{{ shop.id }}" type="submit"  hx-swap="outerHTML" hx-target="#shopColum{{ shop.id }}" hx-patch="/shops/{{ shop.id }}">Save</button> </td>
+</tr>

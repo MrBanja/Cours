@@ -1,0 +1,12 @@
+<tr id="employeeColum{{ employee.id }}">
+    <td>{{ employee.id }}</td>
+    <td hx-swap="outerHTML" hx-get="/employees/{{ employee.id }}/edit" hx-target="#employeeColum{{ employee.id }}">{{ employee.first_name }}</td>
+    <td hx-swap="outerHTML" hx-get="/employees/{{ employee.id }}/edit" hx-target="#employeeColum{{ employee.id }}">{{ employee.second_name }}</td>
+    <td hx-swap="outerHTML" hx-get="/employees/{{ employee.id }}/edit" hx-target="#employeeColum{{ employee.id }}">{{ employee.age }}</td>
+    <td hx-swap="outerHTML" hx-get="/employees/{{ employee.id }}/edit" hx-target="#employeeColum{{ employee.id }}">{{ employee.shop_id }}</td>
+    <td><button class="uk-icon-button" uk-icon="icon: close" hx-delete="/employees/{{ employee.id }}" hx-swap="outerHTML" hx-target="#employeeColum{{ employee.id }}"></button></td>
+</tr>
+
+{% if not_shop_alert %}
+    <script>alert('Wrong shop ID')</script>
+{% endif %}

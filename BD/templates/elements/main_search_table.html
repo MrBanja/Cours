@@ -1,0 +1,24 @@
+<table id="employeesList">
+    <tr>
+        <th>Employee ID</th>
+        <th>First name</th>
+        <th>Second name</th>
+        <th>Age</th>
+        <th>Shop ID</th>
+        <th>Shop name</th>
+        <th>Shop Address</th>
+    </tr>
+
+    {% for employee, shop in data %}
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.first_name }}</td>
+            <td>{{ employee.second_name }}</td>
+            <td>{{ employee.age }}</td>
+            <td>{{ shop.id }}</td>
+            <td>{{ shop.name }}e</td>
+            <td>{{ shop.address }}</td>
+        </tr>
+    {% endfor %}
+
+</table>

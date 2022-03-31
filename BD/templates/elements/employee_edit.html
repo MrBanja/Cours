@@ -1,0 +1,8 @@
+<tr id="employeeColum{{ employee.id }}" >
+    <td>{{ employee.id }}</td>
+    <td> <input type="text" value="{{ employee.first_name }}" name="first_name"></td>
+    <td> <input type="text" value="{{ employee.second_name }}" name="second_name"></td>
+    <td> <input type="number" value="{{ employee.age }}" name="age"></td>
+    <td> <input type="number" value="{{ employee.shop_id }}" name="shop_id"></td>
+    <td> <button id="changeColum{{ employee.id }}" type="submit"  hx-swap="outerHTML" hx-target="#employeeColum{{ employee.id }}" hx-patch="/employees/{{ employee.id }}">Save</button> </td>
+</tr>

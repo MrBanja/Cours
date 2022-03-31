@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+        li.htmx-swapping {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <table id="employeesList">
+        <tr>
+            <th>Employee ID</th>
+            <th>First name</th>
+            <th>Second name</th>
+            <th>Age</th>
+            <th>Shop ID</th>
+            <th>Shop name</th>
+            <th>Shop Address</th>
+        </tr>
+
+        {% for employee, shop in data %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.second_name }}</td>
+                <td>{{ employee.age }}</td>
+                <td>{{ shop.id }}</td>
+                <td>{{ shop.name }}e</td>
+                <td>{{ shop.address }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+    <form>
+        <label> First Name
+            <input
+                    type="text"
+                    name="first_name"
+                    hx-post="/search"
+                    hx-trigger="keyup changed delay:500ms"
+                    hx-indicator=".htmx-indicator"
+                    hx-target="#employeesList"
+                    hx-swap="outerHTML"
+            >
+        </label>
+        <label> Age from
+            <input
+                    type="number"
+                    name="age_from"
+                    hx-post="/search"
+                    hx-trigger="keyup changed delay:500ms"
+                    hx-indicator=".htmx-indicator"
+                    hx-target="#employeesList"
+                    hx-swap="outerHTML"
+            >
+        </label>
+        <label> Age to
+            <input
+                    type="number"
+                    name="age_to"
+                    hx-post="/search"
+                    hx-trigger="keyup changed delay:500ms"
+                    hx-indicator=".htmx-indicator"
+                    hx-target="#employeesList"
+                    hx-swap="outerHTML"
+            >
+        </label>
+{#        <button>P</button>#}
+    </form>
+    <br>
+{% endblock %}

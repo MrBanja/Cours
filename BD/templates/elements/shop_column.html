@@ -1,0 +1,6 @@
+<tr id="shopColum{{ shop.id }}">
+    <td>{{ shop.id }}</td>
+    <td hx-swap="outerHTML" hx-get="/shops/{{ shop.id }}/edit" hx-target="#shopColum{{ shop.id }}">{{ shop.name }}</td>
+    <td hx-swap="outerHTML" hx-get="/shops/{{ shop.id }}/edit" hx-target="#shopColum{{ shop.id }}">{{ shop.address }}</td>
+    <td><button class="uk-icon-button" uk-icon="icon: close" hx-delete="/shops/{{ shop.id }}" hx-swap="outerHTML" hx-target="#shopColum{{ shop.id }}"></button></td>
+</tr>

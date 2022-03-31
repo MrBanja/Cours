@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+        li.htmx-swapping {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <form>
+        <table id="employeesList">
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Second name</th>
+                <th>Age</th>
+                <th>Shop Id</th>
+                <th></th>
+            </tr>
+
+            {% for employee in employees %}
+                {% include 'elements/employee_column.html' with context %}
+            {% endfor %}
+        </table>
+    </form>
+
+    <br>
+    <h3>Add new Shop</h3>
+    <form hx-post="/employees" hx-trigger="submit" hx-swap="beforeend" hx-target="#employeesList">
+        <label>First Name
+            <input id="firstNameInput" type="text" name="first_name">
+        </label><br>
+        <label> Second Name
+            <input id="secondNameInput" type="text" name="second_name">
+        </label><br>
+        <label> Age
+            <input id="ageInput" type="number" name="age">
+        </label><br>
+        <label> Shop ID
+            <input id="shopIdInput" type="number" name="shop_id">
+        </label>
+        <br>
+        <button>Add</button>
+    </form>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        htmx.on('htmx:afterSwap', function (event) {
+            document.getElementById("firstNameInput").value = ""
+            document.getElementById("secondNameInput").value = ""
+            document.getElementById("ageInput").value = ""
+            document.getElementById("shopIdInput").value = ""
+        });
+    </script>
+{% endblock %}

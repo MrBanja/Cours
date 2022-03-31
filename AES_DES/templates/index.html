@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.21/dist/js/uikit-icons.min.js"></script>
+
+    <!-- Htmx -->
+    <script src="https://unpkg.com/htmx.org@1.3.3" integrity="sha384-QrlPmoLqMVfnV4lzjmvamY0Sv/Am8ca1W7veO++Sp6PiIGixqkD+0xZ955Nc03qO" crossorigin="anonymous"></script>
+
+</head>
+<body>
+{##}
+{#<h3>Generate Keys</h3>#}
+{#<form hx-get="/generate_keys" hx-trigger="submit" hx-swap="innerHTML" hx-target="#generate-msg">#}
+{#    <button>generate</button>#}
+{#    <div id="generate-msg">#}
+{##}
+{#    </div>#}
+{#</form>#}
+{##}
+{##}
+{#<h3>Sign file</h3>#}
+{#<form hx-post="/sign_file" hx-trigger="submit" hx-swap="innerHTML" hx-target="#sign-msg" hx-encoding="multipart/form-data">#}
+{#    <label> Text File#}
+{#        <input id="fileInput" type="file" name="file">#}
+{#    </label><br>#}
+{#    <label> Private Key#}
+{#        <input id="pkFileInput" type="file" name="private_key">#}
+{#    </label>#}
+{#    <br>#}
+{#    <button>Sign</button>#}
+{#    <div id="sign-msg">#}
+{##}
+{#    </div>#}
+{#</form>#}
+{##}
+{#<h3>Verify file</h3>#}
+{#<form hx-post="/verify_file" hx-trigger="submit" hx-swap="innerHTML" hx-target="#verify_add_message" hx-encoding="multipart/form-data">#}
+{#    <label> Text File#}
+{#        <input id="fileInput" type="file" name="file">#}
+{#    </label><br>#}
+{#    <label> Signature Key#}
+{#        <input id="sigFileInput" type="file" name="signature_key">#}
+{#    </label><br>#}
+{#    <label> Public Key#}
+{#        <input id="pubFileInput" type="file" name="public_key">#}
+{#    </label>#}
+{#    <br>#}
+{#    <button>Verify</button>#}
+{##}
+{#    <div id="verify_add_message">#}
+{##}
+{#    </div>#}
+{#</form>#}
+{#<hr>#}
+<h3>Encrypt file</h3>
+<form hx-post="/encrypt" hx-trigger="submit" hx-swap="innerHTML" hx-target="#encrypt-message" hx-encoding="multipart/form-data">
+    <label> Text File
+        <input id="fileInput" type="file" name="file">
+    </label><br>
+    <label> Passkey
+        <input id="passkey" type="password" name="passkey">
+    </label><br>
+    <label> DES
+        <input id="is_des" type="radio" name="algo_name" value="DES" checked>
+    </label>
+    <label> AES
+        <input id="is_des" type="radio" name="algo_name" value="AES">
+    </label>
+    <br>
+    <button>Encrypt</button>
+
+    <div id="encrypt-message">
+
+    </div>
+</form>
+
+<h3>Decrypt file</h3>
+<form hx-post="/decrypt" hx-trigger="submit" hx-swap="innerHTML" hx-target="#decrypt-message" hx-encoding="multipart/form-data">
+    <label> Text File
+        <input id="fileInput" type="file" name="file">
+    </label><br>
+    <label> Passkey
+        <input id="passkey" type="password" name="passkey">
+    </label><br>
+    <label> DES
+        <input id="is_des" type="radio" name="algo_name" value="DES" checked>
+    </label>
+    <label> AES
+        <input id="is_des" type="radio" name="algo_name" value="AES">
+    </label>
+    <br>
+    <button>Decrypt</button>
+
+    <div id="decrypt-message">
+
+    </div>
+</form>
+
+</body>
+</html>

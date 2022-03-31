@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block style %}
+    <style>
+        li.htmx-swapping {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <form>
+        <table id="shopsList">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th></th>
+            </tr>
+
+            {% for shop in shops %}
+                {% include 'elements/shop_column.html' with context %}
+            {% endfor %}
+        </table>
+    </form>
+
+    <br>
+    <h3>Add new Shop</h3>
+    <form hx-post="/shops" hx-trigger="submit" hx-swap="beforeend" hx-target="#shopsList">
+        <label> Name
+            <input id="nameInput" type="text" name="name">
+        </label><br>
+        <label> Address
+            <input id="addressInput" type="text" name="address">
+        </label>
+        <br>
+        <button>Add</button>
+    </form>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        htmx.on('htmx:afterSwap', function (event) {
+            document.getElementById("nameInput").value = ""
+            document.getElementById("addressInput").value = ""
+        });
+    </script>
+{% endblock %}
